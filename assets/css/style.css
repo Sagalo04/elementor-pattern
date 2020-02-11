@@ -1,0 +1,316 @@
+@import url("https://pattern.uao.edu.co/css/style.css");
+@font-face { 
+    font-family: 'icomoon'; 
+    src: url("../fonts/icomoon.eot") format("embedded-opentype"),
+    url("../fonts/icomoon.svg") format("svg"), 
+    url("../fonts/icomoon.ttf") format("truetype"),
+    url("../fonts/icomoon.woff") format("woff"); 
+}
+.home{
+    margin-top:0 !important;
+}
+a.link-image-button {
+    box-shadow: 0 0 7px 0 rgba(0,0,0,.1) !important;
+}
+a.primary-btn {
+    color: #fff ;
+    text-decoration: none !important;
+}
+button {
+    background-color: transparent !important;
+    border: 0 !important;
+    cursor: pointer !important;
+    font-family: Roboto,sans-serif !important;
+    font-weight: 400 !important;
+}
+/*--- Hero primera seccion ---*/
+section .hero-section {
+    padding-top: 3rem;
+}
+section.hero-section .hhs-container.with-temporary-notice .hhsc-right {
+    padding-top: 3rem;
+    display: flex;
+}
+section.hero-section .hhs-container .hhsc-left h1 {
+    padding: 1.375rem 1.125rem 1.25rem 1.75rem !important;
+    font-size: 2.5625rem;
+    font-weight: 700;
+    letter-spacing: -.07812rem;
+    line-height: 2.6875rem;
+}
+@media (max-width: 800px){
+    section.hero-section .hhs-container.with-temporary-notice .hhsc-right {
+        padding-top: 0rem; 
+        display: flex;
+    }
+    section.hero-section .hhs-container {
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-top: 5rem !important;
+    }
+}
+
+
+/*---Aviso temporal ---*/
+.temporary-notice {
+    z-index: 0;
+}
+/*--- Botón de lista compuesto con imagen ----*/
+
+a.list-btn.list-btn-line {
+    max-width: 24rem;
+    margin: .625rem .5rem;
+}
+a.list-btn.list-btn-line.btn-with-image .lb-text {
+    font-size: 1.125rem;
+    height: 4.5rem !important;
+    padding: 0.5625rem .875rem !important;
+}
+a.list-btn.list-btn-line figure {
+    height: 13.25rem;
+    position: relative;
+}
+
+a.list-btn.list-btn-line figure:before {
+    background-color: rgba(54,54,54,.6);
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+a.list-btn.list-btn-line:hover figure:before {
+    background-color: rgba(54,54,54,.4);
+}
+
+a.list-btn.list-btn-line figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+a.list-btn.list-btn-line .lb-text:after {
+    top: inherit;
+}
+a.list-btn.list-btn-line .lb-text:before {
+    top: inherit;
+}
+
+@media (max-width: 800px){
+    a.list-btn.list-btn-line figure {
+    display: none;
+}
+}
+/*--- post news ---*/
+#pattern-post-category-rednder{
+    display: flex;
+}
+article.news-card {
+    margin: 1rem auto;
+}
+/*--- Boton principal con linea */
+.home section .primary-btn {
+    margin-top: 0 !important;
+    top: 0 !important;
+    }
+/*--- Footer ---*/
+footer .footer-links li {
+    font-size: 16px;
+    line-height: 1.2;
+}
+@media (max-width: 800px){
+footer .footer-links li {
+    display: block !important;
+    text-align: center;
+}
+footer .footer-links li:after{
+    display: none;
+}
+}
+
+/*--- Clases de color utilizables pattern*/
+    /* Colores Principales */
+        .Rojo-principal-1{
+            background-color: #ed1d24 !important;
+        }
+        .Negro{
+            background-color: #000000 !important;
+        }
+        .Blanco{
+            background-color: #ffffff !important;
+        }
+    /* Colores Secundarios */
+        .Rojo-2{
+            background-color: #510608 !important;
+        }
+        .Rojo-3{
+            background-color: #8b0304 !important;
+        }
+        .Rojo-4{
+            background-color: #9e0b0f !important;
+        }
+        .Rojo-5{
+            background-color: #c4161c !important;
+        }
+        .Rojo-6{
+            background-color: #f82e35 !important;
+        }
+        .Rojo-7{
+            background-color: #fe6a6f !important;
+        }
+    /*Colores Neutros */
+        .Gris-1{
+            background-color: #363636 !important;
+        }
+        .Gris-2{
+            background-color: #666666 !important;
+        }
+        .Gris-3{
+            background-color: #9e9e9e !important;
+        }
+        .Gris-4{
+            background-color: #d1d1d1 !important;
+        }
+        .Gris-5{
+            background-color: #f4f4f4 !important;
+        }
+    /* Colores Por Facultad */
+            /* Facultad de Ingeniería */
+            .Rojizo-1{
+                background-color: #8f232f !important;
+            }
+            .Rojizo-2{
+                background-color: #741823 !important;
+            }
+            .Rojizo-3{
+                background-color: #78313e !important;
+            }
+            .Rojizo-4{
+                background-color: #a6243a !important;
+            }
+            /* Facultad de Comunicación y Ciencias Sociales */
+            .Morado-1{
+                background-color: #5d4a9e !important;
+            }
+            .Morado-2{
+                background-color: #3e266e !important;
+            }
+            .Morado-3{
+                background-color: #8479a9 !important;
+            }
+            .Morado-4{
+                background-color: #cec0fd !important;
+            }
+             /* Facultad de Ciencias Administrativas */
+             .Azul-1{
+                background-color: #3564af !important;
+            }
+            .Azul-2{
+                background-color: #0b2164 !important;
+            }
+            .Azul-3{
+                background-color: #4a6a9d !important;
+            }
+            .Azul-4{
+                background-color: #99bbf2 !important;
+            }
+             /* Facultad de Ciencias Básicas y Ambientales */
+             .Verde-1{
+                background-color: #62bc50 !important;
+            }
+            .Verde-2{
+                background-color: #2d7d2f !important;
+            }
+            .Verde-3{
+                background-color: #82b278 !important;
+            }
+            .Verde-4{
+                background-color: #9feb90 !important;
+            }
+            /* Facultad de Humanidades y Artes */
+            .Naranja-1{
+                background-color: #f58233 !important;
+            }
+            .Naranja-2{
+                background-color: #ab5610 !important;
+            }
+            .Naranja-3{
+                background-color: #c07d4f !important;
+            }
+            .Naranja-4{
+                background-color: #ffb888 !important;
+            }
+
+    /* Instituto de Estudios para la Sostenibilidad */
+    .Verde-claro-1{
+        background-color: #b8c633 !important;
+    }
+    .Verde-claro-2{
+        background-color: #94aa24 !important;
+    }
+    .Verde-claro-3{
+        background-color: #8a9059 !important;
+    }
+    .Verde-claro-4{
+        background-color: #e5ec9f !important;
+    }
+    /* Bienestar */
+    .Amarillo-1{
+        background-color: #fdb913 !important;
+    }
+    .Amarillo-2{
+        background-color: #d09910 !important;
+    }
+    .Amarillo-3{
+        background-color: #b29859 !important;
+    }
+    .Amarillo-4{
+        background-color: #ffd97c !important;
+    }
+    /* Sinapsis*/
+    
+    .Naranja-sinapsis-1{
+        background-color: #ED730C !important;
+    }
+    .Naranja-sinapsis-2{
+        background-color: #c96a23 !important;
+    }
+    .Naranja-sinapsis-3{
+        background-color: #cf8451 !important;
+    }
+    .Naranja-sinapsis-4{
+        background-color: #eabb9b !important;
+    }
+    .Purpura-sinapsis-1{
+        background-color: #9A68A8 !important;
+    }
+    .Purpura-sinapsis-2{
+        background-color: #684675 !important;
+    }
+    .Purpura-sinapsis-3{
+        background-color: #624e6b !important;
+    }
+    .Purpura-sinapsis-4{
+        background-color: #655f69!important;
+    }
+    .Gris-sinapsis-1{
+        background-color: #70706F !important;
+    }
+    .Gris-sinapsis-2{
+        background-color: #8d8e8d !important;
+    }
+    .Gris-sinapsis-3{
+        background-color: #a5a4a3 !important;
+    }
+    .Gris-sinapsis-4{
+        background-color: #d1d0d1 !important;
+    }
+/* Crad de directorio */
+
+.directory-card{
+    margin: 0 auto;
+}
+
+
+    
