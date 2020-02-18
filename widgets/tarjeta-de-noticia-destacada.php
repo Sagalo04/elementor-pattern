@@ -186,10 +186,10 @@ class Tarjeta_De_Directorio extends Widget_Base {
         echo '<img src="../../../images/example-image.jpg" alt="UAO">';
         echo '</figure>';
         echo '<p class="category-tag ">';
-        echo $settings['general_section'];
+        echo $settings['title'];
         echo '</p>';
         echo '<p class="fnc-title">';
-        echo $settings['title'];
+        echo $settings['general_section'];
         echo '</p>';
         echo '<time class="date-text">03 de Abril de 2019</time>';
         echo '</a>';
@@ -209,32 +209,29 @@ class Tarjeta_De_Directorio extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		
-        <article class="directory-card" style="margin:0 auto">
-            <header class="{{settings.color_title}}">   
-                <h1>{{{settings.title}}}</h1>
-            </header>
-            <p>
-                <strong>Director</strong>
-                <br>
-                {{{settings.director}}}
-            </p>
-            <section class="set-icon">
-                <div class="circle-icon">
-            <span class="icon icon-phone"></span>
-            </div>
-            {{{settings.phone}}}
-            </section>
-            <section class="set-icon">
-                <div class="circle-icon">
-            <span class="icon icon-envelope"></span>
-            </div>
-                <a href="mailto:{{settings.mail}}">{{{settings.mail}}}</a>
-            </section>
-            </article>
-
-
-                    
+		<article class="featured-news-card">
+			<a href="#">
+				<figure>
+				<img src="../../../images/example-image.jpg" alt="UAO">
+				</figure>
+				{{^ facultyClass }}
+				{{> atoms-category-tag(text: {{{settings.title}}})}}
+				{{/ facultyClass }}
+				{{# facultyClass }}
+				{{> atoms-category-tag(text: "{{facultyName}}", faculty-class: "{{facultyClass}}")}}
+				{{/ facultyClass }}
+				<p class="fnc-title">
+				{{^ text }}
+				{{{settings.general_section}}}
+				{{/ text }}
+				{{# text }}
+				{{text }}
+				{{/ text }}
+				</p>
+				{{> atoms-time}}
+			</a>
+			<p class="corner-dot-lines"><span></span><span></span></p>
+		</article>                    
 		<?php
 	}
 }
