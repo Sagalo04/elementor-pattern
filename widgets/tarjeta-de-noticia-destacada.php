@@ -75,6 +75,28 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 		return [ 'pattern-uao' ];
 	}
 
+	public function get_cat() {
+		$args = array(
+			'taxonomy'	=> "category",
+			'hide_empty' => 0,
+			'parent' => 0,
+		);
+		
+		$cat = array(
+			'0'=> 'Todas',
+		);
+		
+	
+		$categories = get_categories($args);
+			foreach( $categories as $category ) {
+				
+					$cat [$category->term_id] = $category->name;
+			}
+
+			return $cat;			
+	}
+
+	
 	/**
 	 * Register the widget controls.
 	 *
@@ -165,6 +187,17 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 				],
 			]
 		);
+		$this->add_control(
+			
+			'category',
+			[
+				'label' => __( 'Categoria', 'ultimas-noticias' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'all',
+				'options' => $this->get_cat(),
+				
+			]
+		);
 		$this->end_controls_section();
 
 	}
@@ -178,9 +211,12 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 	 *
 	 * @access protected
 	 */
+	
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-        
+			
+		$cat = $this->get_cat();	
+        var_dump($cat);
         echo '<article class="featured-news-card">';
         echo '<a href="#">';
         echo '<figure>';
@@ -210,29 +246,23 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
+
 		<article class="featured-news-card">
-			<a href="#">
-				<figure>
-				<img src="../../../images/example-image.jpg" alt="UAO">
-				</figure>
-				{{^ facultyClass }}
-				{{> atoms-category-tag(text: {{{settings.title}}})}}
-				{{/ facultyClass }}
-				{{# facultyClass }}
-				{{> atoms-category-tag(text: "{{facultyName}}", faculty-class: "{{facultyClass}}")}}
-				{{/ facultyClass }}
-				<p class="fnc-title">
-				{{^ text }}
-				{{{settings.general_section}}}
-				{{/ text }}
-				{{# text }}
-				{{text }}
-				{{/ text }}
-				</p>
-				{{> atoms-time}}
-			</a>
-			<p class="corner-dot-lines"><span></span><span></span></p>
-		</article>                    
+        <a href="#">
+        <figure>
+        <img src="../../../images/example-image.jpg" alt="UAO">
+        </figure>
+        <p class="category-tag ">
+         {{{settings.title}}}
+        </p>
+        <p class="fnc-title">
+        {{{settings.general_section}}}
+        </p>
+        <time class="date-text">03 de Abril de 2019</time>
+        </a>
+        <p class="corner-dot-lines"><span></span><span></span></p>
+        </article>
+
 		<?php
 	}
 }
