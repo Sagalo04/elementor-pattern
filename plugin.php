@@ -61,6 +61,7 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/ultimas-noticias.php' );
 		require_once( __DIR__ . '/widgets/seccion-de-redes-aliadas.php' );
 		require_once( __DIR__ . '/widgets/tarjeta-de-directorio.php' );
+		require_once( __DIR__ . '/widgets/tarjeta-de-noticia-destacada.php' );
 		require_once( __DIR__ . '/widgets/boton-principal.php' );
 		require_once( __DIR__ . '/widgets/boton-secundario.php' );
 		require_once( __DIR__ . '/widgets/footer.php' );
@@ -94,6 +95,7 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Ultimas_Noticias() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Seccion_De_Redes_Aliadas() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Tarjeta_De_Directorio() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Tarjeta_De_Noticia_Destacada() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Contacto() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Footer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Header() );
