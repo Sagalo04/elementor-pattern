@@ -292,8 +292,8 @@ class Boton_Daniel extends Widget_Base {
 			color:{{settings.text_color}} !important;
 		}
 		</style>
-				<a class="secondary-btn alone" style="color:{{ settings.text_color }}" href="{{ settings.url }}">
-                    {{{ settings.title }}}
+				<a class="secondary-btn alone" style="color:{{ settings.text_color }}" href="{{ settings.url }}"> /**2 llaves es atributo */
+                    {{{ settings.title }}} /**3 llaves para imprimir */
                 </a>
 
 		<?php
