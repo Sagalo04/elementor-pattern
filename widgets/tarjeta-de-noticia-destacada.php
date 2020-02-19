@@ -41,7 +41,7 @@ class Tarjeta_De_Directorio extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Tarjeta De Evento Destacado', 'tarjeta-de-noticia-destacada' );
+		return __( 'Tarjeta De Noticia Destacada', 'tarjeta-de-noticia-destacada' );
 	}
 
 	/**
