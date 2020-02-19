@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Tarjeta_De_Directorio extends Widget_Base {
+class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
