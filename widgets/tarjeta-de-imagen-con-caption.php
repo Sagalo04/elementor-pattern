@@ -111,6 +111,39 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'urlI',
+			[
+				'label' => __( 'URL', 'tarjeta-de-imagen-con-caption' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'input_type' => 'url',
+				'placeholder' => __( 'https://your-link.com', 'tarjeta-de-imagen-con-caption' ),
+			]
+		);
+
+		$this->add_control(
+			'alignment',
+			[
+				'label' => __( 'Alignment', 'tarjeta-de-imagen-con-caption' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'tarjeta-de-imagen-con-caption' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'tarjeta-de-imagen-con-caption' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'tarjeta-de-imagen-con-caption' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'center',
+			]
+		);
 		
         $this->end_controls_section();
 
@@ -131,8 +164,9 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 			
         echo '<a href="#" class="figure-caption-card">';
         echo '<figure>';
-        echo '<img src="'.$settings['image']['url'].'" alt="UAO">';
-        echo '<figcaption>'.$settings['title'].'</figcaption>';
+        echo '<a'.$settings['urlI'].'><img src="'.$settings['image']['url'].'" alt="UAO"></a>';
+		echo '<figcaption>'.$settings['title'].'</figcaption>';
+		echo $settings['alignment'];
         echo '</figure>';
         echo '</a>';
 	}
@@ -151,8 +185,9 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 
         <a href="#" class="figure-caption-card">
         <figure>
-        <img src="{{ settings.image.url }}" alt="UAO">
+		<a {{{settings.urlI}}}><img src="{{ settings.image.url }}" alt="UAO"></a>
         <figcaption>{{{settings.title}}}</figcaption>
+		{{{settings.alignment}}}
         </figure>
         </a>
 
