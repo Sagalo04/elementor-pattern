@@ -4,6 +4,7 @@ namespace ElementorPatternUao\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager; 
+use Elementor\Group_Control_Base; 
 use Elementor\Utils; 
 
 
@@ -112,12 +113,12 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 			]
 		);
 
+		
 		$this->add_control(
 			'urlI',
 			[
 				'label' => __( 'URL', 'tarjeta-de-imagen-con-caption' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'input_type' => 'url',
+				'type' => Controls_Manager::TEXT,
 				'placeholder' => __( 'https://your-link.com', 'tarjeta-de-imagen-con-caption' ),
 			]
 		);
@@ -128,7 +129,7 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 				'label' => __( 'Alignment', 'tarjeta-de-imagen-con-caption' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
-					'left' => [
+					'flex-start' => [
 						'title' => __( 'Left', 'tarjeta-de-imagen-con-caption' ),
 						'icon' => 'fa fa-align-left',
 					],
@@ -136,7 +137,7 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 						'title' => __( 'Center', 'tarjeta-de-imagen-con-caption' ),
 						'icon' => 'fa fa-align-center',
 					],
-					'right' => [
+					'flex-end' => [
 						'title' => __( 'Right', 'tarjeta-de-imagen-con-caption' ),
 						'icon' => 'fa fa-align-right',
 					],
@@ -161,14 +162,13 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 	
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-			
-        echo '<a href="#" class="figure-caption-card">';
+	
+		echo '<a href="'.$settings['urlI'].'" class="figure-caption-card" style"display:flex;justify-content:'.$settings['alignment'].'">';
         echo '<figure>';
-        echo '<a'.$settings['urlI'].'><img src="'.$settings['image']['url'].'" alt="UAO"></a>';
+        echo '<img src="'.$settings['image']['url'].'" alt="UAO">';
 		echo '<figcaption>'.$settings['title'].'</figcaption>';
-		echo $settings['alignment'];
         echo '</figure>';
-        echo '</a>';
+		echo '</a>';
 	}
 
 	/**
@@ -183,11 +183,10 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 	protected function _content_template() {
 		?>
 
-        <a href="#" class="figure-caption-card">
+        <a href="{{ settings.urlI }}" class="figure-caption-card" style="display:flex;justify-content:{{ settings.alignment }}">
         <figure>
-		<a {{{settings.urlI}}}><img src="{{ settings.image.url }}" alt="UAO"></a>
+		<img src="{{ settings.image.url }}" alt="UAO">
         <figcaption>{{{settings.title}}}</figcaption>
-		{{{settings.alignment}}}
         </figure>
         </a>
 
