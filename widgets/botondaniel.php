@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Elementor Boton Daniel
  *
- * Elementor widget for Boton Daniel
+ * Elementor widget for Boton Daniel 
  *
  * @since 1.0.0
  */
