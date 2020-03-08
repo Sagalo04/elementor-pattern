@@ -102,7 +102,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
 		$this->add_control(
 			'ocupacion',
 			[
-				'label' => __( 'ocupacion', 'tarjeta-de-perfil' ),
+				'label' => __( 'Ocupación', 'tarjeta-de-perfil' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
@@ -110,7 +110,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
 		$this->add_control(
 			'numero_extension',
 			[
-				'label' => __( 'numero_extension', 'tarjeta-de-perfil' ),
+				'label' => __( 'Número y extensión', 'tarjeta-de-perfil' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
@@ -123,20 +123,11 @@ class Tarjeta_De_Perfil extends Widget_Base {
                               
 			]
 		);
-
-		$this->add_control(
-			'alttext',
-			[
-				'label' => __( 'Texto alternativo', 'tarjeta-de-perfil' ),
-                'type' => Controls_Manager::TEXT,
-                           
-			]
-		);
-
+	
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'link', 'tarjeta-de-perfil' ),
+				'label' => __( 'Link', 'tarjeta-de-perfil' ),
                 'type' => Controls_Manager::TEXT,
                            
 			]
@@ -197,11 +188,6 @@ class Tarjeta_De_Perfil extends Widget_Base {
 			]
 		);
 		
-
-		$this->start_controls_tabs( 'tabs_button_style' );
-
-		
-	
 		
 		/* Colores principales */
 		$this->add_control(
@@ -300,8 +286,8 @@ class Tarjeta_De_Perfil extends Widget_Base {
 	echo '<article class="profile-card">';
     echo '<a href="'.$settings['link'].'">';
     echo '<div class="pc-top">';
-    echo '<figure>';
-    echo '<img src="'.$settings['imagen'].'" alt="'.$settings['alttext'].'">';
+	echo '<figure>';
+	echo '<img src="'.$settings['imagen']['url'].'" alt="UAO">';
     echo '</figure>';
     echo '<div>';
     echo '<p class="pc-name">'.$settings['nombre'].'</p>';
@@ -310,7 +296,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
     echo '</div>';
     echo '<p class="pc-phone">'.$settings['numero_extension'].'</p>';
     echo '</a>';
-    echo '{{> atoms-link-button(text: "'.$settings['correo'].'", href: "mailto:'.$settings['correo'].'")}}';
+    echo '{{> atoms-link-button(text: "ejemplocorreo@uao.edu.co", href: "mailto:ejemplocorreo@uao.edu.co")}}';
     echo'</article>';
 
 
@@ -331,8 +317,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
   <a href="{{settings.link}}">
     <div class="pc-top">
       <figure>
-	  {{{settings.imagen}}}
-        <img src="{{settings.imagen}}" alt="{{settings.alttext}}">
+        <img src="{{settings.imagen}}" alt="UAO">
       </figure>
       <div>
         <p class="pc-name">{{{settings.nombre}}}</p>
@@ -342,7 +327,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
     <p class="pc-phone">{{{settings.numero_extension}}}</p>
 	{{{settings.link}}}
   </a>
-    {{> atoms-link-button(text: "{{{settings.correo}}}", href: " "mailto:{{settings.correo}}")}}
+    {{> atoms-link-button(text: "{{{settings.correo}}}", href: "mailto:{{{settings.correo}}}")}}
 </article>
 
 		<?php
