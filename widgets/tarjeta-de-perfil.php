@@ -2,7 +2,8 @@
 namespace ElementorPatternUao\Widgets;
 
 use Elementor\Widget_Base;
-use Elementor\Controls_Manager; 
+use Elementor\Controls_Manager;
+use Elementor\Utils; 
 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -14,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Boton_Daniel extends Widget_Base {
+class Tarjeta_De_Perfil extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -119,12 +120,30 @@ class Boton_Daniel extends Widget_Base {
 			[
 				'label' => __( 'Correo', 'tarjeta-de-perfil' ),
                 'type' => Controls_Manager::TEXT,
-                'placeholder' => __( 'https://www.misite.com', 'botondaniel' ),                
+                              
+			]
+		);
+
+		$this->add_control(
+			'alttext',
+			[
+				'label' => __( 'Texto alternativo', 'tarjeta-de-perfil' ),
+                'type' => Controls_Manager::TEXT,
+                           
+			]
+		);
+
+		$this->add_control(
+			'link',
+			[
+				'label' => __( 'link', 'tarjeta-de-perfil' ),
+                'type' => Controls_Manager::TEXT,
+                           
 			]
 		);
 		
 		$this->add_control(
-			'image',
+			'imagen',
 			[
 				'label' => __( 'Imagen', 'tarjeta-de-perfil' ),
 				'type' => Controls_Manager::MEDIA,
@@ -164,34 +183,31 @@ class Boton_Daniel extends Widget_Base {
 		$this->start_controls_section(
 			'style_section',
 			[
-				'label' => __( 'Style', 'botondaniel' ),
+				'label' => __( 'Style', 'tarjeta-de-perfil' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'text_color',
 			[
-				'label' => __( 'Color de texto', 'botondaniel' ),
+				'label' => __( 'Color de texto', 'tarjeta-de-perfil'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				
 				'default' => '#fff',
 			]
 		);
+		
 
 		$this->start_controls_tabs( 'tabs_button_style' );
 
 		
-		$this->start_controls_tab(
-			'tab_button_hover',
-			[
-				'label' => __( 'Hover', 'elementor' ),
-			]
-		);
+	
+		
 		/* Colores principales */
 		$this->add_control(
 			'more_options',
 			[
-				'label' => __( 'Colores', 'botondaniel' ),
+				'label' => __( 'Colores', 'tarjeta-de-perfil' ),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -199,7 +215,7 @@ class Boton_Daniel extends Widget_Base {
 		$this->add_control(
 			'color1',
 			[
-				'label' => __( 'Colores Principales', 'botondaniel' ),
+				'label' => __( 'Colores Principales', 'tarjeta-de-perfil' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'Rojo-principal-1',
 				'options' => [
@@ -280,20 +296,22 @@ class Boton_Daniel extends Widget_Base {
 	 */
 	protected function render() {
         $settings = $this->get_settings_for_display();
-		echo '<style>
-		a.secondary-btn.alone:hover{
-			color:'.$settings['color1'].'!important;
-        }
-        a.secondary-btn.alone:hover:after{
-			color:'.$settings['color1'].'!important;
-        }
-        a.secondary-btn.alone:after{
-			color:'.$settings['text_color'].'!important;
-		}
-		</style>';
-        echo '<a class="secondary-btn alone" style="color:'.$settings['text_color'].';" href="'.$settings['url'].'">';
-        echo $settings['title'];
-        echo '</a>';
+		
+	echo '<article class="profile-card">';
+    echo '<a href="'.$settings['link'].'">';
+    echo '<div class="pc-top">';
+    echo '<figure>';
+    echo '<img src="'.$settings['imagen'].'" alt="'.$settings['alttext'].'">';
+    echo '</figure>';
+    echo '<div>';
+    echo '<p class="pc-name">'.$settings['nombre'].'</p>';
+    echo '<p class="pc-occupation">'.$settings['ocupacion'].'</p>';
+    echo '</div>';
+    echo '</div>';
+    echo '<p class="pc-phone">'.$settings['numero_extension'].'</p>';
+    echo '</a>';
+    echo '{{> atoms-link-button(text: "'.$settings['correo'].'", href: "mailto:'.$settings['correo'].'")}}';
+    echo'</article>';
 
 
 	}
@@ -309,20 +327,23 @@ class Boton_Daniel extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<style>
-		a.secondary-btn.alone:hover{
-			color:{{ settings.color1 }} !important;
-        }
-        a.secondary-btn.alone:hover:after{
-			color:{{ settings.color1 }} !important;
-        }
-        a.secondary-btn.alone:after{
-			color:{{settings.text_color}} !important;
-		}
-		</style>
-				<a class="secondary-btn alone" style="color:{{ settings.text_color }}" href="{{ settings.url }}"> /**2 llaves es atributo */
-                    {{{ settings.title }}} /**3 llaves para imprimir */
-                </a>
+		<article class="profile-card">
+  <a href="{{settings.link}}">
+    <div class="pc-top">
+      <figure>
+	  {{{settings.imagen}}}
+        <img src="{{settings.imagen}}" alt="{{settings.alttext}}">
+      </figure>
+      <div>
+        <p class="pc-name">{{{settings.nombre}}}</p>
+        <p class="pc-occupation">{{{settings.ocupacion}}}</p>
+      </div>
+    </div>
+    <p class="pc-phone">{{{settings.numero_extension}}}</p>
+	{{{settings.link}}}
+  </a>
+    {{> atoms-link-button(text: "{{{settings.correo}}}", href: " "mailto:{{settings.correo}}")}}
+</article>
 
 		<?php
 	}
