@@ -223,6 +223,5 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
         </a>
 
 		<?php
-
 	}
 }
