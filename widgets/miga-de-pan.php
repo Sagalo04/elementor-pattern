@@ -240,8 +240,8 @@ class Miga_De_Pan extends Widget_Base {
 	protected function render() {
         $settings = $this->get_settings_for_display();
 		
-            echo '<script type="application/ld+json">':
-            echo {
+            echo '<script type="application/ld+json">';
+            echo '{';
             echo '"@context": "https://schema.org",';
             echo '"@type": "BreadcrumbList",';
             echo '"itemListElement": [{';
@@ -251,7 +251,7 @@ class Miga_De_Pan extends Widget_Base {
             echo '"item": "https://www.uao.edu.co/"';
             echo   '},{';
             echo  '"@type": "ListItem",';
-            echo '"position": 2,;'
+            echo '"position": 2,';
             echo    '"name": "Nuestra Institución",';
             echo   '"item": "https://www.uao.edu.co/nuestra-institucion"';
             echo '},{';
