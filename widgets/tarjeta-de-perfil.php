@@ -8,9 +8,9 @@ use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Elementor Boton Daniel
+ * Elementor Tarjeta de perfil
  *
- * Elementor widget for Boton Daniel
+ * Elementor widget for Tarjeta de perfil
  *
  * @since 1.0.0
  */
@@ -26,7 +26,7 @@ class Boton_Daniel extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'botondaniel';
+		return 'tarjeta-de-perfil';
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Boton_Daniel extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'boton daniel', 'botondaniel' );
+		return __( 'tarjeta de perfil', 'tarjeta-de-perfil' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Boton_Daniel extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-button';
+		return 'eicon-person';
 	}
 
 	/**
@@ -86,25 +86,53 @@ class Boton_Daniel extends Widget_Base {
 		$this->start_controls_section(
 			'general_section',
 			[
-				'label' => __( 'Contenido', 'botondaniel' ),
+				'label' => __( 'Contenido', 'tarjeta-de-perfil' ),
 			]
 		);
 
 		$this->add_control(
-			'title',
+			'nombre',
 			[
-				'label' => __( 'Titulo', 'botondaniel' ),
+				'label' => __( 'Nombre', 'tarjeta-de-perfil' ),
 				'type' => Controls_Manager::TEXT,
 			]
-        );
-        $this->add_control(
-			'url',
+		);
+		
+		$this->add_control(
+			'ocupacion',
 			[
-				'label' => __( 'Enlace del boton', 'botondaniel' ),
+				'label' => __( 'ocupacion', 'tarjeta-de-perfil' ),
+				'type' => Controls_Manager::TEXT,
+			]
+		);
+
+		$this->add_control(
+			'numero_extension',
+			[
+				'label' => __( 'numero_extension', 'tarjeta-de-perfil' ),
+				'type' => Controls_Manager::TEXT,
+			]
+		);
+		
+        $this->add_control(
+			'correo',
+			[
+				'label' => __( 'Correo', 'tarjeta-de-perfil' ),
                 'type' => Controls_Manager::TEXT,
                 'placeholder' => __( 'https://www.misite.com', 'botondaniel' ),                
 			]
-        );
+		);
+		
+		$this->add_control(
+			'image',
+			[
+				'label' => __( 'Imagen', 'tarjeta-de-perfil' ),
+				'type' => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => Utils::get_placeholder_image_src(),
+				],
+			]
+		);
         $this->add_responsive_control(
 			'align',
 			[
