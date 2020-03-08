@@ -123,16 +123,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
                               
 			]
 		);
-	
-		$this->add_control(
-			'link',
-			[
-				'label' => __( 'Link', 'tarjeta-de-perfil' ),
-                'type' => Controls_Manager::TEXT,
-                           
-			]
-		);
-		
+			
 		$this->add_control(
 			'imagen',
 			[
@@ -284,7 +275,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
         $settings = $this->get_settings_for_display();
 		
 	echo '<article class="profile-card">';
-    echo '<a href="'.$settings['link'].'">';
+    echo '<a href="#">';
     echo '<div class="pc-top">';
 	echo '<figure>';
 	echo '<img src="'.$settings['imagen']['url'].'" alt="UAO">';
@@ -321,10 +312,10 @@ class Tarjeta_De_Perfil extends Widget_Base {
 	protected function _content_template() {
 		?>
 		<article class="profile-card">
-  <a href="{{settings.link}}">
+  <a href="#">
     <div class="pc-top">
       <figure>
-        <img src="{{settings.imagen}}" alt="UAO">
+        <img src="{{{settings.imagen.url}}}" alt="UAO">
       </figure>
       <div>
         <p class="pc-name">{{{settings.nombre}}}</p>
