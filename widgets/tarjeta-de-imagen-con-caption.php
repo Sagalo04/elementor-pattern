@@ -6,7 +6,6 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager; 
 use Elementor\Group_Control_Image_Size; 
 use Elementor\Utils; 
-use Elementor\Core\Schemes;
 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -109,7 +108,7 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 				'label' => __( 'Escoge una imagen', 'tarjeta-de-imagen-con-caption' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
-				'url' => Utils::get_placeholder_image_src(),
+					'url' => Utils::get_placeholder_image_src(),
 				],
 			]
 		);
@@ -119,22 +118,22 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 			[
 				'name' => 'thumbnail', // // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
 				'default' => 'large',
-				'separator' => 'none',
-				'exclude' => [ '1536x1536', '2048x2048'],
+				'exclude' => [ '1536x1536', '2048x2048', 'Full'],
+				'include' => [],
 			]
 		);
 
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Enlace', 'plugin-domain' ),
+				'label' => __( 'Enlace', 'tarjeta-de-imagen-con-caption' ),
 				'type' => \Elementor\Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+				'placeholder' => __( 'https://your-link.com', 'tarjeta-de-imagen-con-caption' ),
 				'show_external' => true,
 				'default' => [
-					'url' => '',
+					'urlL' => '',
 					'is_external' => true,
-					'nofollow' => true,
+					'nofollow' => false,
 				],
 			]
 		);		
@@ -179,15 +178,13 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		//echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'image_name', 'image');
-
 		$target = $settings['link']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['link']['nofollow'] ? ' rel="nofollow"' : '';		
 	
-		echo '<a href="'.$settings['link']['url'].'"'.$target . $nofollow.' class="figure-caption-card" style"display:flex;justify-content:'.$settings['alignment'].'">';
-        echo '<figure>';
-		echo '<img src="'.\Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'image_name', 'image').'" alt="UAO">';
-		//echo '<img src="'.\Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'image_name', 'image').'" alt="UAO">';
+		echo '<a href="'.$settings['link']['url'].'"'.$target . $nofollow.' class="figure-caption-card" style="display:flex;justify-content:'.$settings['alignment'].'">';
+		echo '<figure>';
+		//echo '<img src="'.$settings['image']['url'].'" alt="UAO">';
+		echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' );
 		echo '<figcaption>'.$settings['title'].'</figcaption>';
         echo '</figure>';
 		echo '</a>';	
@@ -206,6 +203,7 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 	protected function _content_template() {
 		?>
 		<#
+		
 		var image = {
 			id: settings.image.id,
 			url: settings.image.url,
@@ -215,9 +213,10 @@ class Tarjeta_De_Imagen_Con_Caption extends Widget_Base {
 		};
 		var image_url = elementor.imagesManager.getImageUrl( image );
 		#>
-        <a href="{{ settings.link }}" class="figure-caption-card" style="display:flex;justify-content:{{ settings.alignment }}">
+
+        <a href="{{ settings.link.url }}" class="figure-caption-card" style="display:flex;justify-content:{{ settings.alignment }}">
         <figure>
-		<img src="{{ image_url }}" alt="UAO">
+		<img src="{{{ image_url }}}" alt="UAO">
         <figcaption>{{{settings.title}}}</figcaption>
         </figure>
         </a>
