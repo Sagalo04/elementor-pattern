@@ -67,6 +67,7 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/contacto.php' );
 		require_once( __DIR__ . '/widgets/header.php' );
 		require_once( __DIR__ . '/widgets/tarjeta-de-perfil.php' );
+		require_once( __DIR__ . '/widgets/miga-de-pan.php' );
 	}
 
 	/**
@@ -99,6 +100,7 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Footer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Header() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Tarjeta_De_Perfil() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Miga_De_Pan() );
 				
 	}
 	
