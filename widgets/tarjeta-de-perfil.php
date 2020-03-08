@@ -296,8 +296,15 @@ class Tarjeta_De_Perfil extends Widget_Base {
     echo '</div>';
     echo '<p class="pc-phone">'.$settings['numero_extension'].'</p>';
     echo '</a>';
-    echo '{{> atoms-link-button(text: "ejemplocorreo@uao.edu.co", href: "mailto:ejemplocorreo@uao.edu.co")}}';
-    echo'</article>';
+	echo '<!--';
+	echo 'Variable Styles (for dark backgrounds)';
+	echo 'mustache:   -  class: dark-background';
+    echo '-->';
+	echo '<a class="link-btn " href="mailto:'.$settings['correo'].'">';
+	echo ''.$settings['correo'].'';
+	echo '</a>';
+	echo '</article>';
+	
 
 
 	}
@@ -327,7 +334,14 @@ class Tarjeta_De_Perfil extends Widget_Base {
     <p class="pc-phone">{{{settings.numero_extension}}}</p>
 	{{{settings.link}}}
   </a>
-    {{> atoms-link-button(text: "{{{settings.correo}}}", href: "mailto:{{{settings.correo}}}")}}
+     <!--
+  Variable Styles (for dark backgrounds)
+  mustache:   -  class: dark-background
+-->
+
+<a class="link-btn " href="mailto:{{settings.correo}}">
+{{{settings.correo}}}
+</a>
 </article>
 
 		<?php
