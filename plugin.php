@@ -66,6 +66,7 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/footer.php' );
 		require_once( __DIR__ . '/widgets/contacto.php' );
 		require_once( __DIR__ . '/widgets/header.php' );
+		require_once( __DIR__ . '/widgets/modulo_de_perfil_docente.php' );
 	}
 
 	/**
@@ -97,6 +98,7 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Contacto() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Footer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Header() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Modulo_De_Perfil_Docente() );
 				
 	}
 	

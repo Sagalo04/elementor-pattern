@@ -96,20 +96,36 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 			[
 				'label' => __( 'Titulo', 'modulo_de_perfil_docente' ),
 				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Nuestro equipo Docente', 'modulo_de_perfil_docente' ), 
+				'default' => 'Nuestro equipo Docente',
 			]
 		);
 		$this->add_control(
 			'category',
 			[
 				'label' => __( 'Categoria', 'modulo_de_perfil_docente' ),
-                'type' => Controls_Manager::TEXT,              
+                'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Departamento de Automática y Electrónica', 'modulo_de_perfil_docente' ), 
+				'default' => 'Departamento de Automática y Electrónica',
+			]
+		);
+		$this->add_control(
+			'image',
+			[
+				'label' => __( 'Imagen', 'modulo_de_perfil_docente' ),
+				'type' => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => Utils::get_placeholder_image_src(),
+				],
 			]
 		);
         $this->add_control(
 			'name',
 			[
 				'label' => __( 'Nombre', 'modulo_de_perfil_docente' ),
-                'type' => Controls_Manager::TEXT,              
+				'type' => Controls_Manager::TEXT,            
+				'placeholder' => __( 'Diego Fernando Almario Álvarez', 'modulo_de_perfil_docente' ),      
+				'default' => 'Diego Fernando Almario Álvarez',
 			]
         );
         $this->add_control(
@@ -117,6 +133,8 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 			[
 				'label' => __( 'Cargo', 'modulo_de_perfil_docente' ),
 				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( 'Docente', 'modulo_de_perfil_docente' ),  
+				'default' => 'Docente',   
 			]
         );
         $this->add_control(
@@ -124,13 +142,17 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 			[
 				'label' => __( 'Telefono', 'modulo_de_perfil_docente' ),
 				'type' => Controls_Manager::TEXT,
+				'placeholder' => __( '318 8000 - Ext. 11346', 'modulo_de_perfil_docente' ),     
+				'default' => '318 8000 - Ext. 11346',   
 			]
         );
         $this->add_control(
 			'mail',
 			[
 				'label' => __( 'Email', 'modulo_de_perfil_docente' ),
-                'type' => Controls_Manager::TEXT,              
+				'type' => Controls_Manager::TEXT,         
+				'placeholder' => __( 'bdfcorreo@uao.edu.co', 'modulo_de_perfil_docente' ),    
+				'default' => 'bdfcorreo@uao.edu.co',    
 			]
 		);
 		$this->add_control(
@@ -141,9 +163,7 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
                 'placeholder' => __( 'https://www.misite.com', 'modulo_de_perfil_docente' ),                
 			]
 		);
-		
 
-		
         $this->add_control(
 			'color_title',
 			[
@@ -211,6 +231,24 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 		);
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'style_section',
+			[
+				'label' => __( 'Style', 'aviso-temporal' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Color de fondo', 'aviso-temporal' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				
+				'default' => '#c4161c',
+			]
+		);
+		$this->end_controls_tab();
+
 	}
 
 	/**
@@ -224,39 +262,38 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-        
         echo '<div class="teacher-profile ">';
         echo '<div class="faculty">';
-        echo '<p>{{{settings.title}}}</p>';
+        echo '<p> '.$settings['title'].'</p>';
         echo '<p class="category-tag ">';
         echo 'Universidad Autónoma de Occidente';
         echo '</p>';
-		echo '<p>{{{settings.category}}}</p>';
+		echo '<p>'.$settings['category'].'</p>';
 		echo '</div>';
 		echo '<div class="teacher">';
-		echo ' <div class="photo-info">';
+		echo '<div class="photo-info">';
 		echo '<figure>';
-		echo '<img src="../../../images/example-image.jpg" alt="UAO">';
+		echo '<img src="'.$settings['image']['url'].'" alt="UAO">';
 		echo '</figure>';
 		echo '<div class="info">';
-		echo '<p class="name">{{{settings.name}}}</p>';
-		echo '<p>{{{settings.charge}}}</p>';
+		echo '<p class="name">'.$settings['name'].'</p>';
+		echo '<p>'.$settings['charge'].'</p>';
 		echo '<div class="phone">';
 		echo '<div class="circle-icon">';
 		echo '<span class="icon icon-phone"></span>';
 		echo '</div>';
-		echo '<p>{{{settings.phone}}}</p>';
+		echo '<p>'.$settings['phone'].'</p>';
 		echo '</div>';
 		echo '<div class="email">';
 		echo '<div class="circle-icon">';
 		echo '<span class="icon icon-envelope"></span>';
 		echo '</div>';
-		echo '<a href="">{{{settings.mail}}}</a>';
+		echo '<a href="">'.$settings['mail'].'</a>';
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
-		echo '<a class="list-btn" href="{{settings.url}}">';
-		echo '<div class="lb-text">';
+		echo '<a class="list-btn" href="'.$settings['url'].'">';
+		echo '<div class="lb-text" style="background-color:'.$settings['title_color'].'">';
 		echo 'Visita la lista completa de Docentes de la Facultad';
 		echo '</div>';
 		echo '<div class="lb-arrow">';
@@ -278,7 +315,7 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-
+		</style>
         <div class="teacher-profile ">
             <div class="faculty">
                 <p>{{{settings.title}}}</p>
@@ -291,7 +328,7 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
             <div class="teacher">
                 <div class="photo-info">
                     <figure>
-                         <img src="../../../images/example-image.jpg" alt="UAO">
+                         <img src="{{ settings.image.url }}" alt="UAO">
                     </figure>
                     <div class="info">
                          <p class="name">{{{settings.name}}}</p>
@@ -311,8 +348,8 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
                     </div>
                 </div>
 
-                <a class="list-btn {{settings.color_title}}" href="{{settings.url}}">
-                    <div class="lb-text">
+                <a class="list-btn" href="{{settings.url}}">
+                    <div class="lb-text" style="background-color:{{settings.title_color}}">
                         Visita la lista completa de Docentes de la Facultad
                     </div>
                     <div class="lb-arrow">

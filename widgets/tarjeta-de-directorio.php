@@ -260,9 +260,7 @@ class Tarjeta_De_Directorio extends Widget_Base {
                 <a href="mailto:{{settings.mail}}">{{{settings.mail}}}</a>
             </section>
             </article>
-
-
-                    
+              
 		<?php
 	}
 }
