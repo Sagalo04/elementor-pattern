@@ -136,11 +136,13 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'Enlace del botón', 'aviso-temporal' ),
+				'label' => __( 'Enlace del botón', 'modulo_de_perfil_docente' ),
                 'type' => Controls_Manager::TEXT,
-                'placeholder' => __( 'https://www.misite.com', 'aviso-temporal' ),                
+                'placeholder' => __( 'https://www.misite.com', 'modulo_de_perfil_docente' ),                
 			]
-        );
+		);
+		
+
 		
         $this->add_control(
 			'color_title',
@@ -309,7 +311,7 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
                     </div>
                 </div>
 
-                <a class="list-btn" href="{{settings.url}}">
+                <a class="list-btn {{settings.color_title}}" href="{{settings.url}}">
                     <div class="lb-text">
                         Visita la lista completa de Docentes de la Facultad
                     </div>
