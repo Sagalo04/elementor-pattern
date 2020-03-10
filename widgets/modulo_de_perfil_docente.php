@@ -97,7 +97,14 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 				'label' => __( 'Titulo', 'modulo_de_perfil_docente' ),
 				'type' => Controls_Manager::TEXT,
 			]
-        );
+		);
+		$this->add_control(
+			'category',
+			[
+				'label' => __( 'Categoria', 'modulo_de_perfil_docente' ),
+                'type' => Controls_Manager::TEXT,              
+			]
+		);
         $this->add_control(
 			'name',
 			[
@@ -126,6 +133,14 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
                 'type' => Controls_Manager::TEXT,              
 			]
 		);
+		$this->add_control(
+			'url',
+			[
+				'label' => __( 'Enlace del botón', 'aviso-temporal' ),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __( 'https://www.misite.com', 'aviso-temporal' ),                
+			]
+        );
 		
         $this->add_control(
 			'color_title',
@@ -208,29 +223,46 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
         
-        echo '<article class="directory-card" style="margin:0 auto">';
-        echo '<header class="'.$settings['color_title'].'">';
-        echo '<h1>'.$settings['title'].'</h1>';
-        echo '</header>';
-        echo '<p>';
-        echo '<strong>Director</strong>';
-        echo '<br>';
-        echo  $settings['director'];
+        echo '<div class="teacher-profile ">';
+        echo '<div class="faculty">';
+        echo '<p>{{{settings.title}}}</p>';
+        echo '<p class="category-tag ">';
+        echo 'Universidad Autónoma de Occidente';
         echo '</p>';
-        echo '<section class="set-icon">';
-        echo '<div class="circle-icon">';
-        echo '<span class="icon icon-phone"></span>';
-        echo '</div>';
-        echo $settings['phone'];
-        echo '</section>';
-        echo '<section class="set-icon">';
-        echo '<div class="circle-icon">';
-        echo '<span class="icon icon-envelope"></span>';
-        echo '</div>';
-        echo '<a href="mailto:'.$settings['mail'].'">'.$settings['mail'].'</a>';
-        echo '</section>';
-        echo '</article>';
-
+		echo '<p>{{{settings.category}}}</p>';
+		echo '</div>';
+		echo '<div class="teacher">';
+		echo ' <div class="photo-info">';
+		echo '<figure>';
+		echo '<img src="../../../images/example-image.jpg" alt="UAO">';
+		echo '</figure>';
+		echo '<div class="info">';
+		echo '<p class="name">{{{settings.name}}}</p>';
+		echo '<p>{{{settings.charge}}}</p>';
+		echo '<div class="phone">';
+		echo '<div class="circle-icon">';
+		echo '<span class="icon icon-phone"></span>';
+		echo '</div>';
+		echo '<p>{{{settings.phone}}}</p>';
+		echo '</div>';
+		echo '<div class="email">';
+		echo '<div class="circle-icon">';
+		echo '<span class="icon icon-envelope"></span>';
+		echo '</div>';
+		echo '<a href="">{{{settings.mail}}}</a>';
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
+		echo '<a class="list-btn" href="{{settings.url}}">';
+		echo '<div class="lb-text">';
+		echo 'Visita la lista completa de Docentes de la Facultad';
+		echo '</div>';
+		echo '<div class="lb-arrow">';
+		echo '<span class="icon icon-chevron-right"></span>';
+		echo '</div>';
+		echo '</a>';
+		echo '</div>';
+		echo '</div>';
 	}
 
 	/**
@@ -247,11 +279,11 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
 
         <div class="teacher-profile ">
             <div class="faculty">
-                <p>Nuestro equipo Docente</p>
+                <p>{{{settings.title}}}</p>
                 <p class="category-tag ">
                  Universidad Autónoma de Occidente
                 </p>
-                <p>Departamento de Automática y Electrónica</p>
+                <p>{{{settings.category}}}</p>
             </div>
 
             <div class="teacher">
@@ -260,24 +292,24 @@ class Modulo_De_Perfil_Docente extends Widget_Base {
                          <img src="../../../images/example-image.jpg" alt="UAO">
                     </figure>
                     <div class="info">
-                         <p class="name">Diego Fernando Almario Álvarez</p>
-                         <p>Docente</p>
+                         <p class="name">{{{settings.name}}}</p>
+                         <p>{{{settings.charge}}}</p>
                         <div class="phone">
                             <div class="circle-icon">
                                 <span class="icon icon-phone"></span>
                             </div>
-                            <p>318 8000 - Ext. 11346</p>
+                            <p>{{{settings.phone}}}</p>
                         </div>
                         <div class="email">
                             <div class="circle-icon">
                                 <span class="icon icon-envelope"></span>
                             </div>
-                            <a href="">bdfcorreo@uao.edu.co</a>
+                            <a href="">{{{settings.mail}}}</a>
                         </div>
                     </div>
                 </div>
 
-                <a class="list-btn" href="#">
+                <a class="list-btn" href="{{settings.url}}">
                     <div class="lb-text">
                         Visita la lista completa de Docentes de la Facultad
                     </div>
