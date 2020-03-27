@@ -134,32 +134,30 @@ class Tarjeta_De_Perfil extends Widget_Base {
 				],
 			]
 		);
-        $this->add_responsive_control(
+        $this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'elementor' ),
+				'label' => __( 'Alignment', 'tarjeta-de-perfil' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left'    => [
-						'title' => __( 'Left', 'elementor' ),
+						'title' => __( 'left', 'tarjeta-de-perfil' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'elementor' ),
+						'title' => __( 'none', 'tarjeta-de-perfil' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'elementor' ),
+						'title' => __( 'right', 'tarjeta-de-perfil' ),
 						'icon' => 'eicon-text-align-right',
 					],
-					'justify' => [
-						'title' => __( 'Justified', 'elementor' ),
-						'icon' => 'eicon-text-align-justify',
-					],
+					
 				],
-				'prefix_class' => 'elementor%s-align-',
-				'default' => '',
-			]
+				'default' => 'left',
+				
+			]			
+						
 		);
 		$this->end_controls_section();
 		$this->start_controls_section(
@@ -311,7 +309,7 @@ class Tarjeta_De_Perfil extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<article class="profile-card">
+		<article class="profile-card" style="float:{{{settings.align}}};">
   <a href="#">
     <div class="pc-top">
       <figure>

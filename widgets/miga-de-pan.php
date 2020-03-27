@@ -227,6 +227,8 @@ class Miga_De_Pan extends Widget_Base {
 		$this->end_controls_section();
 		
 	}
+	
+
 
 	/**
 	 * Render the widget output on the frontend.
@@ -239,31 +241,10 @@ class Miga_De_Pan extends Widget_Base {
 	 */
 	protected function render() {
         $settings = $this->get_settings_for_display();
-		
-            echo '<script type="application/ld+json">';
-            echo '{';
-            echo '"@context": "https://schema.org",';
-            echo '"@type": "BreadcrumbList",';
-            echo '"itemListElement": [{';
-            echo   '"@type": "ListItem",';
-            echo   '"position": 1,';
-            echo  '"name": "Inicio",';
-            echo '"item": "https://www.uao.edu.co/"';
-            echo   '},{';
-            echo  '"@type": "ListItem",';
-            echo '"position": 2,';
-            echo    '"name": "Nuestra Institución",';
-            echo   '"item": "https://www.uao.edu.co/nuestra-institucion"';
-            echo '},{';
-            echo   '"@type": "ListItem",';
-            echo   '"position": 3,';
-            echo  '"name": "Información Institucional",';
-            echo   '"item": "https://www.uao.edu.co/nuestra-institucion/informacion-institucional"';
-            echo '}]';
-            echo  '}';
-            echo '</script>';
+	
+            
             echo '<div class="breadcrumb-desktop">';
-            echo '<a href="#">Inicio</a>';
+            echo '<a href="#"></a>';
             echo    '<span> > </span>';
             echo    '<a href="#">Nuestra Institución</a>';
             echo   '<span> > </span>';
@@ -295,30 +276,9 @@ class Miga_De_Pan extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-    "@type": "ListItem",
-    "position": 1,
-    "name": "Inicio",
-    "item": "https://www.uao.edu.co/"
-  },{
-    "@type": "ListItem",
-    "position": 2,
-    "name": "Nuestra Institución",
-    "item": "https://www.uao.edu.co/nuestra-institucion"
-  },{
-    "@type": "ListItem",
-    "position": 3,
-    "name": "Información Institucional",
-    "item": "https://www.uao.edu.co/nuestra-institucion/informacion-institucional"
-  }]
-}
-</script>
+	
 <div class="breadcrumb-desktop">
-  <a href="#">Inicio</a>
+  <a href="#"></a>
 	  <span> > </span>
 	  <a href="#">Nuestra Institución</a>
 	  <span> > </span>
