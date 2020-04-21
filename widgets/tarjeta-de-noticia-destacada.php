@@ -88,12 +88,22 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 		
 	
 		$categories = get_categories($args);
-			foreach( $categories as $category ) {
-				
+			foreach( $categories as $category ) {				
 					$cat [$category->term_id] = $category->name;
 			}
-
 			return $cat;			
+	}
+
+	public function get_catname() {
+		$settings = $this->get_settings_for_display();
+		$query_args = [
+			'posts_type'=>'posts',
+			'posts_per_page' => $settings['posts_per_page'],
+			'paged' => 1,
+			'cat' => $settings['category'],
+		];
+		
+		return $query_args;
 	}
 
 	
@@ -113,80 +123,36 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 				'label' => __( 'Contenido', 'tarjeta-de-noticia-destacada' ),
 			]
 		);
-
-		$this->add_control(
-			'title',
+		$this->add_responsive_control(
+			'columns',
 			[
-				'label' => __( 'Titulo', 'tarjeta-de-noticia-destacada' ),
-				'type' => Controls_Manager::TEXT,
-			]
-        );
-		
-        $this->add_control(
-			'color_title',
-			[
-				'label' => __( 'Colores Principales', 'tarjeta-de-noticia-destacada' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'Rojo-principal-1',
+				'label' => __( 'Columnas', 'ultimas-noticias' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '3',
+				'tablet_default' => '2',
+				'mobile_default' => '1',
 				'options' => [
-					'Rojo-principal-1'  => 'Rojo-principal-1',
-					'Negro' => 'Negro',
-					'Blanco' => 'Blanco',
-					'Rojo-2'  => 'Rojo-2',
-					'Rojo-3' => 'Rojo-3',
-					'Rojo-4' => 'Rojo-4',
-					'Rojo-5'  => 'Rojo-5',
-					'Rojo-6' => 'Rojo-6',
-					'Rojo-7' => 'Rojo-7',
-					'Gris-1'  => 'Gris-1',
-					'Gris-2' => 'Gris-2',
-					'Gris-3' => 'Gris-3',
-					'Gris-4' => 'Gris-4',
-					'Gris-5' => 'Gris-5',
-					'Rojizo-1'  => 'Rojizo-1',
-					'Rojizo-2' => 'Rojizo-2',
-					'Rojizo-3' => 'Rojizo-3',
-					'Rojizo-4'  => 'Rojizo-4',
-					'Morado-1'  => 'Morado-1',
-					'Morado-2' => 'Morado-2',
-					'Morado-3' => 'Morado-3',
-					'Morado-4'  => 'Morado-4',
-					'Azul-1'  => 'Azul-1',
-					'Azul-2' => 'Azul-2',
-					'Azul-3' => 'Azul-3',
-					'Azul-4'  => 'Azul-4',
-					'Verde-1'  => 'Verde-1',
-					'Verde-2' => 'Verde-2',
-					'Verde-3' => 'Verde-3',
-					'Verde-4'  => 'Verde-4',
-					'Naranja-1'  => 'Naranja-1',
-					'Naranja-2' => 'Naranja-2',
-					'Naranja-3' => 'Naranja-3',
-					'Naranja-4'  => 'Naranja-4',
-					'Verde-claro-1'  => 'Verde-claro-1',
-					'Verde-claro-2' => 'Verde-claro-2',
-					'Verde-claro-3' => 'Verde-claro-3',
-					'Verde-claro-4'  => 'Verde-claro-4',
-					'Amarillo-1'  => 'Amarillo-1',
-					'Amarillo-2' => 'Amarillo-2',
-					'Amarillo-3' => 'Amarillo-3',
-					'Amarillo-4'  => 'Amarillo-4',
-					'Naranja-sinapsis-1'  => 'Naranja-sinapsis-1',
-					'Naranja-sinapsis-2' => 'Naranja-sinapsis-2',
-					'Naranja-sinapsis-3' => 'Naranja-sinapsis-3',
-					'Naranja-sinapsis-4'  => 'Naranja-sinapsis-4',
-					'Purpura-sinapsis-1'  => 'Purpura-sinapsis-1',
-					'Purpura-sinapsis-2' => 'Purpura-sinapsis-2',
-					'Purpura-sinapsis-3' => 'Purpura-sinapsis-3',
-					'Purpura-sinapsis-4'  => 'Purpura-sinapsis-4',
-					'Gris-sinapsis-1'  => 'Gris-sinapsis-1',
-					'Gris-sinapsis-2' => 'Gris-sinapsis-2',
-					'Gris-sinapsis-3' => 'Gris-sinapsis-3',
-					'Gris-sinapsis-4'  => 'Gris-sinapsis-4',
-					
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5',
+					'6' => '6',
 				],
+				'prefix_class' => 'elementor-grid%s-',
+				'frontend_available' => true,
 			]
+		);	
+		$this->add_control(
+				'posts_per_page',
+				[
+					'label' => __( 'Noticias por página', 'ultimas-noticias' ),
+					'type' => Controls_Manager::NUMBER,
+					'min' => 0,
+					'default' => 3,
+				]
 		);
+
 		$this->add_control(
 			
 			'category',
@@ -214,27 +180,82 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 	
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-			
-		$cat = $this->get_cat();	
-        var_dump($cat);
-        echo '<article class="featured-news-card">';
-        echo '<a href="#">';
-        echo '<figure>';
-        echo '<img src="../../../images/example-image.jpg" alt="UAO">';
-        echo '</figure>';
-        echo '<p class="category-tag ">';
-        echo $settings['title'];
-        echo '</p>';
-        echo '<p class="fnc-title">';
-        echo $settings['general_section'];
-        echo '</p>';
-        echo '<time class="date-text">03 de Abril de 2019</time>';
-        echo '</a>';
-        echo '<p class="corner-dot-lines"><span></span><span></span></p>';
-        echo '</article>';
 
+		$args = $this->query_posts();
+			
+        /** @var \WP_Query $query */
+		$query = new \WP_Query($args);
+
+		if ( ! $query->found_posts ) {
+			return;
+		}
+		echo '<div class = "elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid elementor-has-item-ratio">';
+		// It's the global `wp_query` it self. and the loop was started from the theme.
+		if ( $query->in_the_loop ) {
+		
+			echo '<article class="featured-news-card">';
+			echo '<a href="#">';
+			echo '<figure>';
+			echo get_the_post_thumbnail();
+			echo '</figure>';
+			echo '<div>';
+			echo '<p class="category-tag ">';
+			$cate = get_the_category();
+				foreach ($cate as $cat){
+				echo $cat->name;
+			}
+			echo '</p>';
+			echo '</div>';
+			echo '<p class="fnc-title">';
+			echo get_the_title();
+			echo '</p>';
+			echo '<time class="date-text">'.get_the_date().'</time>';
+			echo '</a>';
+			echo '<p class="corner-dot-lines"><span></span><span></span></p>';
+			echo '</article>';
+		} else {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				
+				echo '<article class="featured-news-card">';
+				echo '<a href="#">';
+				echo '<figure>';
+				echo get_the_post_thumbnail();
+				echo '</figure>';
+				echo '<div id="pattern-post-category-rednder">';
+				$cate = get_the_category();
+				foreach ($cate as $cat){
+					echo '<p class="category-tag" style="margin-left:0.5rem">'.$cat->name.'</p>';
+				}
+				echo '</p>';
+				echo '</div>';
+				echo '<p class="fnc-title">';
+				echo get_the_title();
+				echo '</p>';
+				echo '<time class="date-text">'.get_the_date().'</time>';
+				echo '</a>';
+				echo '<p class="corner-dot-lines"><span></span><span></span></p>';
+				echo '</article>';
+                
+			}
+		}
+
+		wp_reset_postdata();
+		echo '</div>';
 	}
 
+	public function query_posts() {
+		$settings = $this->get_settings_for_display();
+		$query_args = [
+			'posts_type'=>'posts',
+			'posts_per_page' => $settings['posts_per_page'],
+			'paged' => 1,
+			'cat' => $settings['category'],
+		];
+		
+		return $query_args;
+	}
+	
 	/**
 	 * Render the widget output in the editor.
 	 *
@@ -244,25 +265,5 @@ class Tarjeta_De_Noticia_Destacada extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
-		?>
 
-		<article class="featured-news-card">
-        <a href="#">
-        <figure>
-        <img src="../../../images/example-image.jpg" alt="UAO">
-        </figure>
-        <p class="category-tag ">
-         {{{settings.title}}}
-        </p>
-        <p class="fnc-title">
-        {{{settings.general_section}}}
-        </p>
-        <time class="date-text">03 de Abril de 2019</time>
-        </a>
-        <p class="corner-dot-lines"><span></span><span></span></p>
-        </article>
-
-		<?php
-	}
 }
