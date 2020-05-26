@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * Elementor widget for Boton_De_Enlace_Con_Imagen.
  *
- * prueba
  * @since 1.0.0
  */
 class Ultimas_Noticias extends Widget_Base {
